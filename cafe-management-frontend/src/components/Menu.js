@@ -11,12 +11,12 @@ const Menu = () => {
     }, []);
 
     const fetchMenu = async () => {
-        const res = await axios.get('http://localhost:3000/api/menu');
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/menu`);
         setMenuItems(res.data);
     };
 
     const addMenuItem = async () => {
-        await axios.post('http://localhost:3000/api/menu', { item_name: itemName, item_price: itemPrice });
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/menu`, { item_name: itemName, item_price: itemPrice });
         fetchMenu();
         setItemName('');
         setItemPrice('');

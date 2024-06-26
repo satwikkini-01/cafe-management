@@ -12,12 +12,12 @@ const Inventory = () => {
     }, []);
 
     const fetchInventory = async () => {
-        const res = await axios.get('http://localhost:3000/api/inventory');
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/inventory`);
         setInventoryItems(res.data);
     };
 
     const addInventoryItem = async () => {
-        await axios.post('http://localhost:3000/api/inventory', { item_name: itemName, quantity, unit_price: unitPrice });
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/inventory`, { item_name: itemName, quantity, unit_price: unitPrice });
         fetchInventory();
         setItemName('');
         setQuantity('');

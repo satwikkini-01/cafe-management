@@ -13,17 +13,17 @@ const Order = () => {
     }, []);
 
     const fetchOrders = async () => {
-        const res = await axios.get('http://localhost:3000/api/orders');
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/orders`);
         setOrders(res.data);
     };
 
     const fetchMenu = async () => {
-        const res = await axios.get('http://localhost:3000/api/menu');
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/menu`);
         setMenuItems(res.data);
     };
 
     const placeOrder = async () => {
-        await axios.post('http://localhost:3000/api/order', { customer_name: customerName, menu_items: orderItems });
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/order`, { customer_name: customerName, menu_items: orderItems });
         fetchOrders();
         setCustomerName('');
         setOrderItems([{ menu_id: '', quantity: '' }]);
